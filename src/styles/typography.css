@@ -1,6 +1,9 @@
 @plugin '@tailwindcss/typography';
 
 @layer base {
+  .prose .katex-display {
+    @apply text-foreground;
+  }
   /* ===== Override default Tailwind Typography styles ===== */
   .app-prose {
     @apply prose;

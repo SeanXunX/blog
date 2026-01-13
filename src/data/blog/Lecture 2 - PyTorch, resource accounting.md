@@ -99,7 +99,10 @@ Interpretation:
 
 ### Model FLOPs utilization (MFU)
 
-**Definition**: $$\frac{actual FLOP/s}{promised FLOP/s}$$
+**Definition**: 
+$$
+\frac{actual FLOP/s}{promised FLOP/s}
+$$
 Usually, MFU of >= 0.5 is quite good (and will be higher if matmuls dominate).
 
 ---

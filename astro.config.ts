@@ -12,6 +12,7 @@ import { transformerFileName } from "./src/utils/transformers/fileName";
 import { SITE } from "./src/config";
 import remarkMath from "remark-math";
 import rehypeKatex from "rehype-katex";
+import remarkAlert from "remark-github-blockquote-alert";
 
 // https://astro.build/config
 export default defineConfig({
@@ -24,6 +25,7 @@ export default defineConfig({
   markdown: {
     remarkPlugins: [
       remarkMath,
+      remarkAlert,
       remarkToc,
       [remarkCollapse, { test: "Table of contents" }],
     ],

@@ -35,6 +35,9 @@ dependencies:
   remark-collapse:
     specifier: ^0.1.2
     version: 0.1.2
+  remark-github-blockquote-alert:
+    specifier: ^2.0.1
+    version: 2.0.1
   remark-math:
     specifier: ^6.0.0
     version: 6.0.0
@@ -4438,6 +4441,13 @@ packages:
       unified: 11.0.5
     transitivePeerDependencies:
       - supports-color
+    dev: false
+
+  /remark-github-blockquote-alert@2.0.1:
+    resolution: {integrity: sha512-0w0u3/wjBEK555yzm5UUnDCWO38Qk60laA5FvJrnES+YA/+r3hvvLgE/5SpMjaVpPOpVzunXk9caob1NTheM0g==, tarball: https://artifactory.devops.xiaohongshu.com/artifactory/api/npm/npm-public/remark-github-blockquote-alert/-/remark-github-blockquote-alert-2.0.1.tgz}
+    engines: {node: '>=16'}
+    dependencies:
+      unist-util-visit: 5.0.0
     dev: false
 
   /remark-math@6.0.0:

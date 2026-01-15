@@ -2,6 +2,10 @@
 author: Sean Xu
 title: Lecture 2 - PyTorch, resource accounting
 pubDatetime: 2025-12-21T14:05:43.689Z
+tags:
+  - cs336
+  - deep learning
+  - learning
 description: Note.
 ---
 # 1. Memory Accounting

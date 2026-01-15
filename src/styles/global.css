@@ -70,3 +70,56 @@ html[data-theme="dark"] {
 :target {
   scroll-margin-block: 1rem;
 }
+
+/* GitHub Alert Blocks Styling */
+.markdown-alert {
+  @apply my-4 rounded-lg border-l-4 px-4 py-3;
+}
+
+.markdown-alert-title {
+  @apply mb-2 flex items-center gap-2 font-semibold;
+}
+
+.markdown-alert > p {
+  @apply text-foreground;
+}
+
+.markdown-alert-note {
+  @apply border-blue-500 bg-blue-100/50;
+}
+
+.dark .markdown-alert-note {
+  @apply border-blue-400 bg-blue-500/10;
+}
+
+.markdown-alert-tip {
+  @apply border-green-500 bg-green-100/50;
+}
+
+.dark .markdown-alert-tip {
+  @apply border-green-400 bg-green-500/10;
+}
+
+.markdown-alert-important {
+  @apply border-purple-500 bg-purple-100/50;
+}
+
+.dark .markdown-alert-important {
+  @apply border-purple-400 bg-purple-500/10;
+}
+
+.markdown-alert-warning {
+  @apply border-yellow-500 bg-yellow-100/50;
+}
+
+.dark .markdown-alert-warning {
+  @apply border-yellow-400 bg-yellow-500/10;
+}
+
+.markdown-alert-caution {
+  @apply border-red-500 bg-red-100/50;
+}
+
+.dark .markdown-alert-caution {
+  @apply border-red-400 bg-red-500/10;
+}

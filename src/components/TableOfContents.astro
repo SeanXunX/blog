@@ -18,16 +18,16 @@ import IconChevronLeft from "@/assets/icons/IconChevronLeft.svg";
   <a
     id="toc-back-button"
     href="/"
-    class="mb-4 flex items-center gap-1 text-sm text-foreground/70 transition-colors hover:text-accent"
+    class="mb-4 flex items-center gap-1 text-xs text-foreground/70 transition-colors hover:text-accent"
   >
     <IconChevronLeft class="inline-block size-4 rtl:rotate-180" />
     <span>Go back</span>
   </a>
-  <h2 class="mb-3 text-sm font-semibold uppercase tracking-wide text-foreground">
+  <h2 class="mb-3 text-xs font-semibold uppercase tracking-wide text-foreground">
     On This Page
   </h2>
   <nav>
-    <ul class="space-y-2 text-sm">
+    <ul class="space-y-2 text-xs">
       {
         tocHeadings.map(heading => (
           <li

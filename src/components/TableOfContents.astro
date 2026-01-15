@@ -1,0 +1,118 @@
+---
+export interface Props {
+  headings: { depth: number; slug: string; text: string }[];
+}
+
+const { headings } = Astro.props;
+
+// Filter to only show h2 and h3
+const tocHeadings = headings.filter(h => h.depth <= 3);
+
+import IconChevronLeft from "@/assets/icons/IconChevronLeft.svg";
+---
+
+<aside
+  id="toc"
+  class="toc-container fixed top-12 left-4 hidden max-h-[calc(100vh-8rem)] w-64 overflow-y-auto rounded-lg border border-border bg-background/95 p-4 backdrop-blur-sm xl:block"
+>
+  <a
+    id="toc-back-button"
+    href="/"
+    class="mb-4 flex items-center gap-1 text-sm text-foreground/70 transition-colors hover:text-accent"
+  >
+    <IconChevronLeft class="inline-block size-4 rtl:rotate-180" />
+    <span>Go back</span>
+  </a>
+  <h2 class="mb-3 text-sm font-semibold uppercase tracking-wide text-foreground">
+    On This Page
+  </h2>
+  <nav>
+    <ul class="space-y-2 text-sm">
+      {
+        tocHeadings.map(heading => (
+          <li
+            class:list={[
+              "toc-item",
+              {
+                "ml-0": heading.depth === 1,
+                "ml-3": heading.depth === 2,
+                "ml-6": heading.depth === 3,
+              },
+            ]}
+          >
+            <a
+              href={`#${heading.slug}`}
+              class="toc-link block text-foreground/70 transition-colors hover:text-accent"
+              data-heading-id={heading.slug}
+            >
+              {heading.text}
+            </a>
+          </li>
+        ))
+      }
+    </ul>
+  </nav>
+</aside>
+
+<style>
+  .toc-container {
+    scrollbar-width: thin;
+  }
+  
+  .toc-link.active {
+    font-weight: 500;
+    color: var(--color-accent);
+  }
+</style>
+
+<script>
+  function setupTOC() {
+    const observer = new IntersectionObserver(
+      entries => {
+        entries.forEach(entry => {
+          const id = entry.target.getAttribute("id");
+          const tocLink = document.querySelector(
+            `.toc-link[data-heading-id="${id}"]`
+          );
+          
+          if (entry.isIntersecting) {
+            // Remove active class from all links
+            document.querySelectorAll(".toc-link").forEach(link => {
+              link.classList.remove("active");
+            });
+            // Add active class to current link
+            tocLink?.classList.add("active");
+          }
+        });
+      },
+      {
+        rootMargin: "0px 0px -80% 0px",
+        threshold: 1.0,
+      }
+    );
+
+    // Observe all headings
+    document.querySelectorAll("article h2, article h3").forEach(heading => {
+      observer.observe(heading);
+    });
+  }
+
+  // Run on initial load
+  setupTOC();
+
+  // Re-run after page navigation (for View Transitions)
+  document.addEventListener("astro:after-swap", setupTOC);
+
+  // Update back button URL
+  function updateGoBackUrl() {
+    const backButton = document.querySelector("#toc-back-button");
+    const backUrl = sessionStorage.getItem("backUrl");
+
+    if (backUrl && backButton) {
+      backButton.setAttribute("href", backUrl);
+    }
+  }
+
+  document.addEventListener("astro:page-load", updateGoBackUrl);
+  updateGoBackUrl();
+</script>

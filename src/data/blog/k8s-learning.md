@@ -2,7 +2,7 @@
 title: Kubernetes Learning
 author: Sean Xu
 pubDatetime: 2026-01-15T02:48:26.320Z
-featured: false
+featured: true
 draft: false
 tags:
   - k8s

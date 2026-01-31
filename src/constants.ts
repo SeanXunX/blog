@@ -8,7 +8,7 @@ import IconFacebook from "@/assets/icons/IconFacebook.svg";
 import IconTelegram from "@/assets/icons/IconTelegram.svg";
 import IconPinterest from "@/assets/icons/IconPinterest.svg";
 import IconBilibili from "@/assets/icons/IconBilibili.svg";
-import { SITE } from "@/config";
+// import { SITE } from "@/config";
 
 interface Social {
   name: string;

@@ -3,7 +3,7 @@ export const SITE = {
     author: "Sean Xu",
     profile: "https://satnaing.dev/",
     desc: "A minimal, responsive and SEO-friendly Astro blog theme.",
-    title: "勉強 | Study & Work",
+    title: "神智糊知 | Study & Work",
     ogImage: "astropaper-og.jpg",
     lightAndDarkMode: true,
     postPerIndex: 4,
@@ -14,7 +14,7 @@ export const SITE = {
     editPost: {
         enabled: true,
         text: "Edit page",
-        url: "https://github.com/satnaing/astro-paper/edit/main/",
+        url: "https://github.com/SeanXunX/blog/edit/main/",
     },
     dynamicOgImage: true,
     dir: "ltr", // "rtl" | "auto"

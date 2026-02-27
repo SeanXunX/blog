@@ -165,10 +165,58 @@ d_{ff} = 4 d_{model}
 $$
 
 > [!note]
-> GLU 中$d_{ff} = 4 d_{model}$, 因为$d_{model}$是原来的$\frac{2}{3}$.
+> GLU 中$d_{ff} = \frac{8}{3} \times d_{model}$, 因为$d_{model}$是原来的$\space\frac{2}{3}$.
+
+## Ratio of `head_dim * head_num` to `model_dim`
+
+Most models have ratios around 1.
+
+## Aspect ratio
+
+Deep v.s. Wide
+
+Most models are surprisingly consistent on the ratio of `d_model` to `n_layer` being 1 too.
+
+## Vocabulary size
+
+Typically, monolingual models have vocab size around 30k to 50k, while multilingual models have vocab size around 100k to 250k.
+
+## Dropout and other reularization
+
+Many older models use dropout during pretraining.
+Newer models rely only on weight decay.
+
+Weight decay interacts with learning rates
+
+# Stability tricks
 
 
+Softmaxes - can be ill-behaved due to **exponential** / **division by zero**
 
+## Output softmax stability – the ‘z-loss’
 
+$$
+\begin{align}
+  
+log(P(x)) & = \log{\frac{e^{U_{r'}(x)}}{Z(x)}} \\
+Z(x) & = \sum_{r' = 1}^{|V|}e^{U_{r'}(x)}
+\end{align}
+$$
+
+通过引入`z-loss`来解决softmax exponential overflow的问题：
+
+$$
+L  = \sum_i[log(P(x_i)) - \alpha log^2(Z(x_i))]
+$$
+
+因为要最大化L，所以softmax会尽量让Z(x)区域趋于0，避免softmax的overflow，从而提高整体的稳定性。
+
+## Attention softmax stability – the ‘QK norm’
+
+The query and keys are Layer (RMS) normed before going into the softmax operation.
+
+## Logit soft-capping.
+
+Soft-capping the logits to some maximum value via Tanh
 
 

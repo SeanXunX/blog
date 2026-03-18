@@ -5,7 +5,7 @@ pubDatetime: 2026-03-17T19:05:54.510+08:00
 featured: false
 draft: false
 tags:
-  - others
+  - paper
 description: Notes about MemGen
 ---
 # 1. 背景

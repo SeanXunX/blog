@@ -50,8 +50,8 @@ $Q$. 其中attention机制使用masked attention，阻止$H$看到$Q$.
 ### latent memory former
 使用两个轻量的 LoRA adapterer，防止破坏 base 模型的通用能力。
 
-输入：concatenated $[X, Q, M_{init}]$ 
-输出：对应short / long的最后 N 个token
+- 输入：concatenated $[X, Q, M_{init}]$ ，组合目标target token seq X，memory query Q，和M init
+- 输出：对应short / long的最后 N 个token
 
 ## Training Recipe
 two-stage training

@@ -35,7 +35,7 @@ cache 清理：
 - older vision tokens 最先被 evicted
 - 当cache不够时，才会 evict text
 
-> [!notice]
+> [!note]
 > [**Attention Sink**](https://arxiv.org/pdf/2309.17453)
 > 在 autoregressive LLM 中，会有很大一部分的attention权重分配给 initial tokens，尽管在语义上和当前的生成无关：
 > - 由于Softmax操作时候所有attention的权重和为1

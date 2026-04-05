@@ -8,12 +8,13 @@ $ whoami
 > Sean Xu | Fudan University | Computer Science
 
 $ cat interests.txt
-> 🧠 Making LLMs smarter (Memory Augmentation)
-> 🛠️ Backend Engineering (Go, C++, Rust)
+> 🧠 Making LLMs smarter (Memory Augmentation, Self-evolving Agents, Agentic RL)
+> 🛠️ Backend Engineering (Go, Python, Rust)
 > 🐧 Arch Linux & Neovim (Yes, I have dotfiles)
 
-$ current_status
-> SWE intern @ Xiaohongshu (RedNote)
+$ echo $EXPERIENCE
+> SWE Intern @ Xiaohongshu (小红书)
+> Reaseach Intern @ LV-Lab NUS
 
 $ echo "Looking for Ph.D./Mphil's opportunities (2027 fall)"
 ```

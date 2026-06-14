@@ -1,0 +1,5 @@
+#!/bin/sh
+# Auto-fill missing required frontmatter (title / pubDatetime / description) in
+# any staged notes under src/data/blog, then re-stage the touched files so the
+# generated frontmatter lands in the same commit. Aborts the commit on error.
+exec node scripts/fill-frontmatter.mjs --staged

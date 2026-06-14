@@ -3,8 +3,10 @@
   "type": "module",
   "version": "5.5.0",
   "scripts": {
+    "prepare": "git config core.hooksPath .githooks || true",
     "dev": "astro dev",
     "new:post": "node scripts/new-post.mjs",
+    "fill:frontmatter": "node scripts/fill-frontmatter.mjs --all",
     "build": "astro check && astro build && pagefind --site dist && cp -r dist/pagefind public/",
     "preview": "astro preview",
     "sync": "astro sync",

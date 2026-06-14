@@ -1,25 +1,16 @@
 import fs from "node:fs";
 import path from "node:path";
+import {
+  buildFrontmatter,
+  formatDateWithOffset,
+  getAuthor,
+} from "./frontmatter-lib.mjs";
 
 const ROOT = process.cwd();
 const BLOG_ROOT = path.join(ROOT, "src", "data", "blog");
-const CONFIG_PATH = path.join(ROOT, "src", "config.ts");
 
 function printHelp() {
   console.log(`Usage:\n  pnpm new:post \"Post Title\" [--dir 子目录] [--tags tag1,tag2] [--desc 描述] [--draft true|false] [--date ISO8601] [--dry-run]\n\nNotes:\n  - 默认 draft 为 true\n  - 默认发布时间为上海时区（+08:00）\n\nExamples:\n  pnpm new:post \"Value Iteration\"\n  pnpm new:post \"策略迭代\" --dir \"强化学习的数学原理\" --tags learning,RL\n`);
-}
-
-function formatDateWithOffset(date, offsetHours = 8) {
-  const shifted = new Date(date.getTime() + offsetHours * 60 * 60 * 1000);
-  const year = shifted.getUTCFullYear();
-  const month = String(shifted.getUTCMonth() + 1).padStart(2, "0");
-  const day = String(shifted.getUTCDate()).padStart(2, "0");
-  const hour = String(shifted.getUTCHours()).padStart(2, "0");
-  const minute = String(shifted.getUTCMinutes()).padStart(2, "0");
-  const second = String(shifted.getUTCSeconds()).padStart(2, "0");
-  const millisecond = String(shifted.getUTCMilliseconds()).padStart(3, "0");
-
-  return `${year}-${month}-${day}T${hour}:${minute}:${second}.${millisecond}+08:00`;
 }
 
 function parseArgs(argv) {
@@ -111,23 +102,6 @@ function sanitizeFileName(input) {
   return `post-${stamp}`;
 }
 
-function getAuthor() {
-  try {
-    const text = fs.readFileSync(CONFIG_PATH, "utf8");
-    const match = text.match(/author:\s*"([^"]+)"/);
-    return match?.[1] ?? "Anonymous";
-  } catch {
-    return "Anonymous";
-  }
-}
-
-function toFrontmatter({ title, author, date, draft, tags, description }) {
-  const yamlTags = tags.length > 0 ? tags : ["others"];
-  const safeDescription = description || `Notes about ${title}`;
-
-  return `---\ntitle: ${title}\nauthor: ${author}\npubDatetime: ${date}\nfeatured: false\ndraft: ${String(draft)}\ntags:\n${yamlTags.map(tag => `  - ${tag}`).join("\n")}\ndescription: ${safeDescription}\n---\n\n`;
-}
-
 function ensureUniquePath(targetPath) {
   if (!fs.existsSync(targetPath)) return targetPath;
 
@@ -156,7 +130,7 @@ function main() {
   const fileName = `${sanitizeFileName(title)}.md`;
   const targetPath = ensureUniquePath(path.join(targetDir, fileName));
 
-  const frontmatter = toFrontmatter({
+  const frontmatter = buildFrontmatter({
     title,
     author,
     date: options.date,
